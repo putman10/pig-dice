@@ -17,7 +17,7 @@ module.exports = {
     new UglifyJsPlugin({ sourceMap: true }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Memory Game',
+      title: 'Pig Dice',
       template: './src/index.html',
       inject: 'body'
     })
@@ -32,8 +32,22 @@ module.exports = {
         ]
       },
       {
+         test: /\.(png|svg|jpg|gif)$/,
+         use: [
+           {
+          loader: 'file-loader',
+          options:{
+            name:'[name].[ext]'
+          }
+        }
+       ]
+      },
+      {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          /spec/
+        ],
         loader: "eslint-loader"
       }
     ]

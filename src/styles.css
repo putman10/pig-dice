@@ -19,7 +19,7 @@
 }
 
 body {
-  background-image: url('../img/spring.png');
+  background-image: url('./img/spring.png');
   font-family: 'Patua One', cursive;
 }
 
@@ -46,7 +46,7 @@ body {
 }
 
 #header {
-  background-image: url(../img/banner2.jpg);
+  background-image: url('./img/banner2.jpg');
   min-height: 335px;
   background-position: top;
   background-size: cover;
@@ -200,7 +200,7 @@ img {
 /*Dice animation from http://www.goocode.net/js/51-jquery-dice-animation.html*/
 
 .wrap1, .wrap2{width:90px; height:90px; margin:30px auto 30px auto; position:relative}
-.dice{width:90px; height:90px; background:url(../img/dice.png) no-repeat;}
+.dice{width:90px; height:90px; background:url('./img/dice.png') no-repeat;}
 .dice_1{background-position:-5px -4px}
 .dice_2{background-position:-5px -107px}
 .dice_3{background-position:-5px -212px}

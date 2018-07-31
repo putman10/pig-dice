@@ -1,40 +1,40 @@
 // Business Logic
 
-function Player (userName) {
+export function Player (userName) {
   this.name = userName;
   this.points = 0;
 }
 
 
 Player.prototype.diceRoll = function() {
-  return (Math.ceil(Math.random() * 6))
-}
+  return (Math.ceil(Math.random() * 6));
+};
 
 export function takesRollChecksForOne(roll) {
   if (roll === 1) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
 export function updateTurnTotal(roll, wasOneRolled, turnTotal, playerPoints, player, playerOneInput) {
   if (!wasOneRolled) {
-    turnTotal += roll
+    turnTotal += roll;
   } else {
-    turnTotal = 0
-    switchPlayers(playerPoints, player, playerOneInput)
+    turnTotal = 0;
+    switchPlayers(playerPoints, player, playerOneInput);
   }
-  return turnTotal
+  return turnTotal;
 }
 
 
 export function switchPlayers(points, player, playerOneInput) {
 
   // business side
-  checkWinCondition(points)
+  checkWinCondition(points);
   if (checkWinCondition(points)){
-    winnerMessage(player)
+    winnerMessage(player);
   }
   // user interface side
 
@@ -48,15 +48,15 @@ export function switchPlayers(points, player, playerOneInput) {
 }
 
 function checkWinCondition(points) {
- if (points >= 100) {
-  return true
+  if (points >= 100) {
+    return true;
   }
 }
 
 function winnerMessage(player) {
-  $(".winner-name").text(player.name)
-  $(".winner-points").text(player.points)
-  $("#winner-message").show()
+  $(".winner-name").text(player.name);
+  $(".winner-points").text(player.points);
+  $("#winner-message").show();
 }
 
 // User Interface
@@ -64,8 +64,8 @@ function winnerMessage(player) {
 export function updateScoreDisplay(playerOnePoints, playerTwoPoints, turnTotal) {
   $("#total").text(turnTotal);
   $("#turn-table").show();
-  $("span#player-one-score").text(playerOnePoints)
-  $("span#player-two-score").text(playerTwoPoints)
+  $("span#player-one-score").text(playerOnePoints);
+  $("span#player-two-score").text(playerTwoPoints);
 }
 
 export function updateRollDisplay(roll) {
@@ -75,22 +75,22 @@ export function updateRollDisplay(roll) {
 export function animateRandomNumber(playerNumber) {
   var dice = $("#dice" + playerNumber);
   // dice.click(function(){
-    $(".wrap" + playerNumber).append("<div id='dice_mask'></div>");//add mask
-    dice.attr("class","dice");//After clearing the last points animation
-    dice.css('cursor','default');
-    var num = Math.floor(Math.random()*6+1);//random num 1-6
-    dice.animate({left: '+2px'}, 50,function(){
-      dice.addClass("dice_t");
-    }).delay(100).animate({top:'-2px'},50,function(){
-      dice.removeClass("dice_t").addClass("dice_s");
-    }).delay(100).animate({opacity: 'show'},300,function(){
-      dice.removeClass("dice_s").addClass("dice_e");
-    }).delay(50).animate({left:'-2px',top:'2px'},50,function(){
-      dice.removeClass("dice_e").addClass("dice_"+num);
-    });
-    $("#result" + playerNumber).html("Your last roll was a <span>"+num+"</span>");
-    dice.css('cursor','pointer');
-    $("#dice_mask").remove(); //remove mask
+  $(".wrap" + playerNumber).append("<div id='dice_mask'></div>");//add mask
+  dice.attr("class","dice");//After clearing the last points animation
+  dice.css('cursor','default');
+  var num = Math.floor(Math.random()*6+1);//random num 1-6
+  dice.animate({left: '+2px'}, 50,function(){
+    dice.addClass("dice_t");
+  }).delay(100).animate({top:'-2px'},50,function(){
+    dice.removeClass("dice_t").addClass("dice_s");
+  }).delay(100).animate({opacity: 'show'},300,function(){
+    dice.removeClass("dice_s").addClass("dice_e");
+  }).delay(50).animate({left:'-2px',top:'2px'},50,function(){
+    dice.removeClass("dice_e").addClass("dice_"+num);
+  });
+  $("#result" + playerNumber).html("Your last roll was a <span>"+num+"</span>");
+  dice.css('cursor','pointer');
+  $("#dice_mask").remove(); //remove mask
 
-    return num
-  }
+  return num;
+}
